@@ -43,6 +43,7 @@ DallasTemperature sensors(&oneWire);
 // arrays to hold device addresses
 DeviceAddress insideThermometer = { 0x28, 0x64, 0xE6, 0x83, 0x03, 0x00, 0x00, 0xF2 };
 DeviceAddress outsideThermometer = { 0x28, 0xB4, 0x7D, 0xC0, 0x03, 0x00, 0x00, 0x99 };
+DeviceAddress insulationThermometer = { 0x28, 0xA5, 0x42, 0x92, 0x04, 0x00, 0x00, 0xBB };
 
 void setup() {
   Serial.begin(115200);
@@ -199,11 +200,13 @@ void publishTemperatures(void) {
   RtcDateTime now = Rtc.GetDateTime();
   long int time = now.Epoch64Time();
   sensors.requestTemperatures();
-  String tempInside = String(sensors.getTempC(insideThermometer));
-  String tempOutside = String(sensors.getTempC(outsideThermometer));
-  
-  DEBUG_MSG("publish to %s \"temperatures %ld %s %s\"\n", TOPIC_UPSTREAM.c_str(), time, tempInside.c_str(), tempOutside.c_str());
-  nats.publishf(TOPIC_UPSTREAM.c_str(), "temperatures %ld %s %s", time, tempInside.c_str(), tempOutside.c_str());
+  String indoorAirTemp = String(sensors.getTempC(insideThermometer));
+  String insulationAirTemp = String(sensors.getTempC(insulationThermometer));
+  String outdoorAirTemp = String(sensors.getTempC(outsideThermometer));
+  String deviceTemp = String(Rtc.GetTemperature().AsFloat());
+
+//  DEBUG_MSG("publish to %s \"temperatures %ld %s %s\"\n", TOPIC_UPSTREAM.c_str(), time, tempInside.c_str(), tempOutside.c_str());
+  nats.publishf(TOPIC_UPSTREAM.c_str(), "wdc %ld %s %s %s %s", time, deviceTemp.c_str(), indoorAirTemp.c_str(), insulationAirTemp.c_str(), outdoorAirTemp.c_str());
 }
 
 // TEMPERATURE ==================================================================
