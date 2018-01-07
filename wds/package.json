@@ -1,0 +1,14 @@
+{
+  "name": "wds",
+  "version": "1.0.0",
+  "description": "Weather Data Sampler",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nats": "^0.7.24"
+  }
+}

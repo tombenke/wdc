@@ -14,7 +14,8 @@ RtcDS3231<TwoWire> Rtc(Wire);
 #define WIFI_SSID "SkyNet"
 #define WIFI_PSK "artinonomet66"
 //#define AXON_GATEWAY_HOST "demo.nats.io"
-#define AXON_GATEWAY_HOST "192.168.2.103"
+//#define AXON_GATEWAY_HOST "192.168.2.103" // latitude notepad
+#define AXON_GATEWAY_HOST "192.168.2.105" // NANOPI NEO
 #define AXON_GATEWAY_PORT NATS_DEFAULT_PORT /* 4222 */
 #define ONE_WIRE_BUS 5
 #define TEMPERATURE_PRECISION 9
@@ -64,8 +65,10 @@ void setup() {
   Serial.print("Found ");
   Serial.print(sensors.getDeviceCount(), DEC);
   Serial.println(" devices.");
-  //sensors.getAddress(insideThermometer, 0);
+
   sensors.setResolution(insideThermometer, TEMPERATURE_PRECISION);
+  sensors.setResolution(outsideThermometer, TEMPERATURE_PRECISION);
+  sensors.setResolution(insulationThermometer, TEMPERATURE_PRECISION);
 }
 
 void loop() {

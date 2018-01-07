@@ -11507,8 +11507,6 @@ Source: 4UCON TECHNOLOGY INC.  14867.pdf</description>
 <part name="U$1" library="ESP8266" deviceset="ESP826612F" device=""/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="P+6" library="supply1" deviceset="VCC" device=""/>
-<part name="P+7" library="supply1" deviceset="VCC" device=""/>
-<part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="P+8" library="supply1" deviceset="VCC" device=""/>
 <part name="R7" library="resistor" deviceset="R-EU_" device="0204/7" value="4K7"/>
@@ -11516,7 +11514,6 @@ Source: 4UCON TECHNOLOGY INC.  14867.pdf</description>
 <part name="SERIAL" library="pinhead" deviceset="PINHD-1X3" device=""/>
 <part name="GND13" library="supply1" deviceset="GND" device=""/>
 <part name="1-WIRE" library="con-4ucon" deviceset="14867" device=""/>
-<part name="DHT-11" library="con-4ucon" deviceset="14867" device=""/>
 <part name="I2C" library="con-4ucon" deviceset="14867" device=""/>
 </parts>
 <sheets>
@@ -11544,8 +11541,6 @@ Source: 4UCON TECHNOLOGY INC.  14867.pdf</description>
 <instance part="U$1" gate="G$1" x="20.32" y="-20.32"/>
 <instance part="GND5" gate="1" x="68.58" y="-60.96"/>
 <instance part="P+6" gate="VCC" x="68.58" y="-38.1"/>
-<instance part="P+7" gate="VCC" x="106.68" y="-30.48"/>
-<instance part="GND6" gate="1" x="106.68" y="-60.96"/>
 <instance part="GND7" gate="1" x="106.68" y="-17.78"/>
 <instance part="P+8" gate="VCC" x="106.68" y="5.08"/>
 <instance part="R7" gate="G$1" x="93.98" y="0" rot="R270"/>
@@ -11553,7 +11548,6 @@ Source: 4UCON TECHNOLOGY INC.  14867.pdf</description>
 <instance part="SERIAL" gate="A" x="88.9" y="43.18" rot="MR180"/>
 <instance part="GND13" gate="1" x="78.74" y="30.48"/>
 <instance part="1-WIRE" gate="G$1" x="114.3" y="-7.62" rot="MR180"/>
-<instance part="DHT-11" gate="G$1" x="111.76" y="-43.18" rot="MR180"/>
 <instance part="I2C" gate="G$1" x="78.74" y="-48.26" rot="MR180"/>
 </instances>
 <busses>
@@ -11611,12 +11605,6 @@ Source: 4UCON TECHNOLOGY INC.  14867.pdf</description>
 <wire x1="76.2" y1="-45.72" x2="68.58" y2="-45.72" width="0.1524" layer="91"/>
 <wire x1="68.58" y1="-45.72" x2="68.58" y2="-40.64" width="0.1524" layer="91"/>
 </segment>
-<segment>
-<pinref part="DHT-11" gate="G$1" pin="4"/>
-<pinref part="P+7" gate="VCC" pin="VCC"/>
-<wire x1="109.22" y1="-40.64" x2="106.68" y2="-40.64" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="-40.64" x2="106.68" y2="-33.02" width="0.1524" layer="91"/>
-</segment>
 </net>
 <net name="GND" class="0">
 <segment>
@@ -11665,12 +11653,6 @@ Source: 4UCON TECHNOLOGY INC.  14867.pdf</description>
 <pinref part="GND5" gate="1" pin="GND"/>
 <wire x1="76.2" y1="-53.34" x2="68.58" y2="-53.34" width="0.1524" layer="91"/>
 <wire x1="68.58" y1="-53.34" x2="68.58" y2="-58.42" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="DHT-11" gate="G$1" pin="1"/>
-<pinref part="GND6" gate="1" pin="GND"/>
-<wire x1="109.22" y1="-48.26" x2="106.68" y2="-48.26" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="-48.26" x2="106.68" y2="-58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -11736,12 +11718,10 @@ Source: 4UCON TECHNOLOGY INC.  14867.pdf</description>
 </net>
 <net name="DATA" class="0">
 <segment>
-<wire x1="109.22" y1="-43.18" x2="101.6" y2="-43.18" width="0.1524" layer="91"/>
-<wire x1="101.6" y1="-43.18" x2="101.6" y2="-10.16" width="0.1524" layer="91"/>
 <pinref part="U$1" gate="G$1" pin="GPIO-4"/>
-<wire x1="101.6" y1="-10.16" x2="55.88" y2="-10.16" width="0.1524" layer="91"/>
-<pinref part="DHT-11" gate="G$1" pin="3"/>
-<label x="104.14" y="-43.18" size="1.778" layer="95"/>
+<wire x1="111.76" y1="-10.16" x2="55.88" y2="-10.16" width="0.1524" layer="91"/>
+<label x="96.52" y="-10.16" size="1.778" layer="95"/>
+<pinref part="1-WIRE" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="1-WIRE_DATA" class="0">
@@ -11749,16 +11729,11 @@ Source: 4UCON TECHNOLOGY INC.  14867.pdf</description>
 <pinref part="U$1" gate="G$1" pin="GPIO-5"/>
 <wire x1="55.88" y1="-7.62" x2="93.98" y2="-7.62" width="0.1524" layer="91"/>
 <label x="96.52" y="-7.62" size="1.778" layer="95"/>
-<wire x1="93.98" y1="-7.62" x2="106.68" y2="-7.62" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="-7.62" x2="111.76" y2="-7.62" width="0.1524" layer="91"/>
 <pinref part="R7" gate="G$1" pin="2"/>
 <wire x1="93.98" y1="-5.08" x2="93.98" y2="-7.62" width="0.1524" layer="91"/>
 <junction x="93.98" y="-7.62"/>
 <pinref part="1-WIRE" gate="G$1" pin="3"/>
-<pinref part="1-WIRE" gate="G$1" pin="2"/>
-<wire x1="106.68" y1="-7.62" x2="111.76" y2="-7.62" width="0.1524" layer="91"/>
-<wire x1="111.76" y1="-10.16" x2="106.68" y2="-10.16" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="-10.16" x2="106.68" y2="-7.62" width="0.1524" layer="91"/>
-<junction x="106.68" y="-7.62"/>
 </segment>
 </net>
 <net name="SCL" class="0">
